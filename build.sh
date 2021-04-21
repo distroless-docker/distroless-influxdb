@@ -1,5 +1,5 @@
 VERSION=1.8.5
-DOCKERHUB=docker.io/distroless/distroless-influxdb
+DOCKERHUB=docker.io/distrolessdocker/distroless-influxdb
 
 docker build --build-arg VERSION=$VERSION --build-arg ARCH=amd64 --build-arg STATIC=-static -t $DOCKERHUB:amd64-$VERSION .
 docker build --build-arg VERSION=$VERSION --build-arg ARCH=armhf --build-arg STATIC= -t $DOCKERHUB:armhf-$VERSION .
