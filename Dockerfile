@@ -24,7 +24,7 @@ RUN mkdir -p /root/tmp && cp /root/influxd /root/tmp && mkdir /root/tmp/.influxd
 
 FROM scratch as image
 ARG VERSION=1.8.5
-USER 1234:1234
+USER 65534:65534
 COPY --from=builder /root/tmp/ /
 COPY --from=builder /influxdb-${VERSION} /licenses/influxdb-${VERSION}
 ENTRYPOINT ["/influxd"]
