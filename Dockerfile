@@ -20,9 +20,11 @@ echo "" >> LICENSE && \
 echo "" >> LICENSE && \
 cat DEPENDENCIES.md >> LICENSE
 RUN mv LICENSE influxdb-${VERSION}
+RUN mkdir -p /root/tmp && cp /root/influxd /root/tmp && mkdir /root/tmp/.influxdb && chown -R 65534:65534 /root/tmp 
 
 FROM scratch as image
 ARG VERSION=1.8.5
-COPY --from=builder /root/influxd /
+USER 1234:1234
+COPY --from=builder /root/tmp/ /
 COPY --from=builder /influxdb-${VERSION} /licenses/influxdb-${VERSION}
 ENTRYPOINT ["/influxd"]
