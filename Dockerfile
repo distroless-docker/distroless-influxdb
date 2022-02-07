@@ -1,6 +1,6 @@
 FROM alpine:latest as builder
 
-ARG VERSION=1.8.5
+ARG VERSION=1.8.10
 ARG ARCH=amd64
 ARG STATIC=-static
 
@@ -23,7 +23,7 @@ RUN mv LICENSE influxdb-${VERSION}
 RUN mkdir -p /root/tmp && cp /root/influxd /root/tmp && mkdir /root/tmp/.influxdb && chown -R 65534:65534 /root/tmp 
 
 FROM scratch as image
-ARG VERSION=1.8.5
+ARG VERSION=1.8.10
 USER 65534:65534
 COPY --from=builder /root/tmp/ /
 COPY --from=builder /influxdb-${VERSION} /licenses/influxdb-${VERSION}
