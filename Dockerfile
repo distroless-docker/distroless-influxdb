@@ -1,4 +1,4 @@
-FROM alpine:latest as builder
+FROM alpine:3.10 as builder
 
 ARG VERSION=1.8.10
 ARG ARCH=amd64
