@@ -1,4 +1,4 @@
-FROM alpine:3.15 as builder
+FROM --platform=linux/amd64 alpine:3.15 as builder
 
 ARG VERSION=2.1.1
 ARG ARCH=amd64
