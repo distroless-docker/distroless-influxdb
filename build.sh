@@ -1,3 +1,5 @@
+#!/bin/bash
+
 VERSION=2.1.1
 DOCKERHUB=docker.io/distrolessdocker/distroless-influxdb
 
