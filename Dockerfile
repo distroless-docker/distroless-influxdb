@@ -1,15 +1,16 @@
-FROM alpine:3.10 as builder
+FROM alpine:3.15 as builder
 
 ARG VERSION=2.1.1
 ARG ARCH=amd64
 
-RUN wget https://dl.influxdata.com/influxdb/releases/influxdb2-${VERSION}-linux-${ARCH}.tar.gz && \
+RUN apk update && apk add curl
+RUN curl https://dl.influxdata.com/influxdb/releases/influxdb2-${VERSION}-linux-${ARCH}.tar.gz -o influxdb2-${VERSION}-linux-${ARCH}.tar.gz  && \
     tar xvfz influxdb2-${VERSION}-linux-${ARCH}.tar.gz && \
     rm -f influxdb2-${VERSION}-linux-${ARCH}.tar.gz && \
     ([ -f influxdb2-${VERSION}-linux-${ARCH}/influxd ] && cp influxdb2-${VERSION}-linux-${ARCH}/influxd /root || cp influxdb2-${VERSION}-linux-${ARCH}/usr/bin/influxd /root) && \
     rm -rf influxdb2-${VERSION}-linux-${ARCH}
 
-RUN wget https://raw.githubusercontent.com/influxdata/influxdb/v${VERSION}/LICENSE && \
+RUN curl https://raw.githubusercontent.com/influxdata/influxdb/v${VERSION}/LICENSE -o LICENSE && \
 echo "" >> LICENSE && \
 echo "" >> LICENSE && \
 echo "--------------------------------------------------------------" >> LICENSE && \
